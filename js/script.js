@@ -24,12 +24,31 @@ document.addEventListener ("DOMContentLoaded", () => {
 
    tabsParent.addEventListener ("click", (event) => {
       const target = event.target;
-      if (event.target && target.matches (".quotes__tab")) {
+      if (target && target.matches (".quotes__tab")) {
          hideTabsContent ();
          showTabsContent (Array.from (tabs).indexOf (target));
       }
    });
-   hideTabsContent ();
+   hideTabsContent();
    showTabsContent();
+
+
+   //hamburger
+
+   const hamburger = document.querySelector ('.header__hamburger');
+   const navMenu = document.querySelector ('.header__right-part');
+
+   hamburger.addEventListener ("click", () => {
+      hamburger.classList.toggle ('header__hamburger_active');
+      navMenu.classList.toggle ('header__right-part_active');
+   });
+
+   navMenu.addEventListener ("click", (event) => {
+      if (event.target && (event.target.classList.contains ('header__link') || event.target.classList.contains ('header__mail-link')|| event.target.classList.contains ('header__button'))) {
+         hamburger.classList.remove ("header__hamburger_active");
+         navMenu.classList.remove ('header__right-part_active');
+      }
+   });
+
 });
 
